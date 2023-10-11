@@ -33,31 +33,31 @@ hi('1', '22', '333', '4444') | Hi A, B, and C!
 #endregion debai
 
 #region bailam
-#             **kwargs to allow calling hi(name='xx') without error > TypeError: hi() got an unexpected keyword argument 'name'
-def hi(*args, **kwargs):
-  if len(args)==0:  # hi()  --> args = (,)
-    if not kwargs:
+#             **name_dict to allow calling hi(name='xx') without error > TypeError: hi() got an unexpected keyword argument 'name'
+def hi(*name_list, **name_dict):
+  if len(name_list)==0:  # hi()  --> name_list = (,)
+    if not name_dict:
       return 'Hi!'
     else:
-      name = kwargs.get('name')
+      name = name_dict.get('name')
       if name:
         return f'Hi {name}!'
       else:
         return 'Hi!'
 
-  if len(args)==1 and args[0] is None:  # hi(None)  --> args = (None,)
+  if len(name_list)==1 and name_list[0] is None:  # hi(None)  --> name_list = (None,)
     return 'Hi!'
 
-  if len(args)==1:  # hi('Mom') hi('')
-    name = args[0]
+  if len(name_list)==1:  # hi('Mom') hi('')
+    name = name_list[0]
     if name:
       return f'Hi {name}!'
     else:
       return 'Hi!'
 
-  if len(args)>1:  # hi('Mom', 'Dad')
-    namestr = ', '.join(args[0:-1])
-    namestr = f'{namestr}, and {args[-1]}'
+  if len(name_list)>1:  # hi('Mom', 'Dad')
+    namestr = ', '.join(name_list[0:-1])
+    namestr = f'{namestr}, and {name_list[-1]}'
     return f"Hi {namestr}!"
 
 if __name__=='__main__':
